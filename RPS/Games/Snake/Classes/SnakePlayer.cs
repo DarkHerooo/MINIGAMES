@@ -1,5 +1,6 @@
 ﻿using MINIGAMES.Classes;
 using MINIGAMES.Games.Snake.Classes._ObjectOnField;
+using MINIGAMES.Games.Snake.Classes._ObjectOnField._SnakeStructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ namespace MINIGAMES.Games.Snake.Classes
 {
     public class SnakePlayer
     {
+        public SnakeHead head;
         public List<SnakeBody> bodies = new List<SnakeBody>();
+        public SnakeTail tail;
         public bool turn = false;
 
         public SnakePlayer(int headX, int headY, int startLength, Way startWay)
         {
-            string uriString = ReturnImgUriHead(startWay, true);
-            SnakeBody snakeHead = new SnakeBody(headX, headY, uriString, startWay);
-            bodies.Add(snakeHead);
+            head = new SnakeHead(headX, headY, null, startWay);
 
             CreateStartSnake(startLength);
         }
@@ -30,95 +31,77 @@ namespace MINIGAMES.Games.Snake.Classes
         /// <param name="startLength"></param>
         private void CreateStartSnake(int startLength)
         {
-            SnakeBody snakeHead = bodies[0];
-            string imgUri = ReturnImgUriBody(snakeHead.way);
-            switch (snakeHead.way)
+            switch (head.way)
             {
                 case Way.Left:
                     for (int i = 1; i < startLength; i++)
                     {
-                        SnakeBody body = new SnakeBody(snakeHead.x + i, 
-                            snakeHead.y, imgUri, snakeHead.way);
+                        if (i == startLength - 1)
+                        {
+                            tail = new SnakeTail(head.x + i,
+                                head.y, null, head.way);
+                            tail.SetImage();
+                            break;
+                        }
+
+                        SnakeBody body = new SnakeBody(head.x + i, 
+                            head.y, null, head.way);
+                        body.SetImage();
                         bodies.Add(body);
                     }
                     break;
                 case Way.Up:
                     for (int i = 1; i < startLength; i++)
                     {
-                        SnakeBody body = new SnakeBody(snakeHead.x,
-                            snakeHead.y + i, imgUri, snakeHead.way);
+                        if (i == startLength - 1)
+                        {
+                            tail = new SnakeTail(head.x,
+                                head.y + i, null, head.way);
+                            tail.SetImage();
+                            break;
+                        }
+
+                        SnakeBody body = new SnakeBody(head.x,
+                            head.y + i, null, head.way);
+                        body.SetImage();
                         bodies.Add(body);
                     }
                     break;
                 case Way.Right:
                     for (int i = 1; i < startLength; i++)
                     {
-                        SnakeBody body = new SnakeBody(snakeHead.x - i,
-                            snakeHead.y, imgUri, snakeHead.way);
+                        if (i == startLength - 1)
+                        {
+                            tail = new SnakeTail(head.x - i,
+                                head.y, null, head.way);
+                            tail.SetImage();
+                            break;
+                        }
+
+                        SnakeBody body = new SnakeBody(head.x - i,
+                            head.y, null, head.way);
+                        body.SetImage();
                         bodies.Add(body);
                     }
                     break;
                 case Way.Down:
                     for (int i = 1; i < startLength; i++)
                     {
-                        SnakeBody body = new SnakeBody(snakeHead.x, 
-                            snakeHead.y - i, imgUri, snakeHead.way);
+                        if (i == startLength - 1)
+                        {
+                            tail = new SnakeTail(head.x,
+                                head.y - i, null, head.way);
+                            tail.SetImage();
+                            break;
+                        }
+
+                        SnakeBody body = new SnakeBody(head.x, 
+                            head.y - i, null, head.way);
+                        body.SetImage();
                         bodies.Add(body);
                     }
                     break;
             }
-
-            SnakeBody snakeTail = bodies[bodies.Count - 1];
-            imgUri = ReturnImgUriTail(snakeHead.way);
-            snakeTail.SetImage(imgUri);
-            
-        }
-
-        private string ReturnImgUriHead(Way way, bool life)
-        {
-            string uriString = "Head/";
-            uriString += life ? "Life/" : "Dead/";
-
-            switch (way)
-            {
-                case Way.Left: uriString += "left.png"; break;
-                case Way.Up: uriString += "up.png"; break;
-                case Way.Right: uriString += "right.png"; break;
-                case Way.Down: uriString += "down.png"; break;
-            }
-
-            return uriString;
-        }
-
-        private string ReturnImgUriBody(Way way)
-        {
-            string uriString = "Body/";
-
-            if (way == Way.Left || way == Way.Right)
-            {
-                uriString += "horizontal.png";
-            }
-            else if (way == Way.Up || way == Way.Down)
-            {
-                uriString += "vertical.png";
-            }
-
-            return uriString;
-        }
-
-        private string ReturnImgUriTail(Way way)
-        {
-            string uriString = "Tail/";
-
-            switch (way)
-            {
-                case Way.Left: uriString += "left.png"; break;
-                case Way.Up: uriString += "up.png"; break;
-                case Way.Right: uriString += "right.png"; break;
-                case Way.Down: uriString += "down.png"; break;
-            }
-
-            return uriString;
         }
 
         /// <summary>
@@ -126,18 +109,15 @@ namespace MINIGAMES.Games.Snake.Classes
         /// </summary>
         private void MoveHead()
         {
-            SnakeBody snakeHead = bodies[0];
-            switch (snakeHead.way)
+            switch (head.way)
             {
-                case Way.Left: snakeHead.x--; break;
-                case Way.Up: snakeHead.y--; break;
-                case Way.Right: snakeHead.x++; break;
-                case Way.Down: snakeHead.y++; break;
+                case Way.Left: head.x--; break;
+                case Way.Up: head.y--; break;
+                case Way.Right: head.x++; break;
+                case Way.Down: head.y++; break;
             }
-            snakeHead.SetLocation();
-
-            string uriString = ReturnImgUriHead(snakeHead.way, true);
-            snakeHead.SetImage(uriString);
+            head.SetLocation();
+            head.SetImage();
 
             TryTurn();
         }
@@ -156,19 +136,29 @@ namespace MINIGAMES.Games.Snake.Classes
                 selectBody.y = nextBody.y;
                 selectBody.SetLocation();
 
-                if (i == bodies.Count - 1)
-                {
-                    selectBody.way = nextBody.way;
-                    string uriString = ReturnImgUriTail(selectBody.way);
-                    selectBody.SetImage(uriString);
-                }
-
-                if (i != bodies.Count - 1 && i != 1)
-                {
-                    selectBody.way = nextBody.way;
-                    selectBody.SetImage(nextBody.imgUri);
-                }
+                selectBody.way = nextBody.way;
+                selectBody.SetImage(nextBody.imgName);
             }
+
+            SnakeBody firstBody = bodies[0];
+            firstBody.x = head.x;
+            firstBody.y = head.y;
+            firstBody.SetLocation();
+        }
+
+        /// <summary>
+        /// Двигает хвост змеи
+        /// </summary>
+        private void MoveTail()
+        {
+            SnakeBody lastBody = bodies[bodies.Count - 1];
+
+            tail.x = lastBody.x;
+            tail.y = lastBody.y;
+            tail.SetLocation();
+
+            tail.way = lastBody.way;
+            tail.SetImage();
         }
 
         /// <summary>
@@ -178,8 +168,8 @@ namespace MINIGAMES.Games.Snake.Classes
         {
             if (turn)
             {
-                Way headWay = bodies[0].way;
-                Way turnWay = bodies[1].way;
+                Way headWay = head.way;
+                Way turnWay = bodies[0].way;
 
                 string urlString = "Turn/";
                 if ((headWay == Way.Left && turnWay == Way.Down) ||
@@ -203,13 +193,13 @@ namespace MINIGAMES.Games.Snake.Classes
                     urlString += "upRight.png";
                 }
 
-                bodies[1].way = bodies[0].way;
-                bodies[1].SetImage(urlString);
+                bodies[0].way = head.way;
+                bodies[0].SetImage(urlString);
             }
             else
             {
-                string urlString = ReturnImgUriBody(bodies[0].way);
-                bodies[1].SetImage(urlString);
+                bodies[0].way = head.way;
+                bodies[0].SetImage();
             }
         }
 
@@ -218,6 +208,7 @@ namespace MINIGAMES.Games.Snake.Classes
         /// </summary>
         public void Move()
         {
+            MoveTail();
             MoveBody();
             MoveHead();
         }
@@ -227,8 +218,8 @@ namespace MINIGAMES.Games.Snake.Classes
         /// </summary>
         public void Growth()
         {
-            SnakeBody snakeTail = bodies[bodies.Count - 1];
-            SnakeBody newBody = new SnakeBody(snakeTail.x, snakeTail.y, snakeTail.imgUri, snakeTail.way);
+            SnakeBody newBody = new SnakeBody(tail.x, tail.y, null, tail.way);
+            newBody.SetImage();
             bodies.Add(newBody);
         }
 
@@ -237,10 +228,9 @@ namespace MINIGAMES.Games.Snake.Classes
         /// </summary>
         public void Dead()
         {
-            SnakeBody snakeHead = bodies[0];
-            string uriString = ReturnImgUriHead(snakeHead.way, false);
-
-            snakeHead.SetImage(uriString);
+            head.life = false;
+            head.way = bodies[0].way;
+            head.SetImage();
             User.userPlayers.snake.GameOver();
         }
     }

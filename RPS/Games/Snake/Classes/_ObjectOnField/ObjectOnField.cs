@@ -13,15 +13,15 @@ namespace MINIGAMES.Games.Snake.Classes._ObjectOnField
     public abstract class ObjectOnField
     {
         public Image image = new Image();
-        public string imgUri;
+        public string imgName;
         public int x;
         public int y;
 
-        public ObjectOnField(int x, int y, string imgUri)
+        public ObjectOnField(int x, int y, string imgName)
         {
             this.x = x;
             this.y = y;
-            this.imgUri = imgUri;
+            this.imgName = imgName;
             image.Stretch = Stretch.Fill;
             SetLocation();
         }
@@ -32,6 +32,6 @@ namespace MINIGAMES.Games.Snake.Classes._ObjectOnField
             Grid.SetRow(image, y);
         }
 
-        public abstract void SetImage(string imgUri);
+        public virtual void SetImage(string imgUri) { }
     }
 }

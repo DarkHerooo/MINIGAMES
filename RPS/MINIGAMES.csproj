@@ -81,7 +81,11 @@
     <Compile Include="Games\RPS\Classes\_Item\_ItemCombination\ItemCombination.cs" />
     <Compile Include="Games\RPS\Classes\_Item\_ItemCombination\ItemCombinations.cs" />
     <Compile Include="Games\Snake\Classes\BarriersStructures.cs" />
-    <Compile Include="Games\Snake\Classes\_ObjectOnField\SnakeBody.cs" />
+    <Compile Include="Games\Snake\Classes\_ObjectOnField\Floor.cs" />
+    <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeBody.cs" />
+    <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeHead.cs" />
+    <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeStructure.cs" />
+    <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeTail.cs" />
     <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevel.cs" />
     <Compile Include="Games\Snake\Classes\SnakePlayer.cs" />
     <Compile Include="Games\Snake\Classes\SnakeData.cs" />
@@ -246,9 +250,6 @@
     <Resource Include="Games\Snake\Images\Food\orange.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\Backgrounds\wood.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
@@ -280,27 +281,28 @@
     <Resource Include="Games\Snake\Images\Barrier\leaves.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\Backgrounds\dirt.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Body\horizontal.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Body\vertical.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Dead\down.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Dead\left.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Dead\right.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Dead\up.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Life\down.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Life\left.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Life\right.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Head\Life\up.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Tail\down.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Tail\left.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Tail\right.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Tail\up.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Turn\downLeft.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Turn\downRight.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Turn\upLeft.png" />
+    <Resource Include="Games\Snake\Images\SnakeStructure\Turn\upRight.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\SnakeBody\Body\horizontal.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Body\vertical.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Dead\down.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Dead\left.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Dead\right.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Dead\up.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Life\down.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Life\left.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Life\right.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Head\Life\up.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Tail\down.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Tail\left.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Tail\right.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Tail\up.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Turn\downLeft.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Turn\downRight.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Turn\upLeft.png" />
-    <Resource Include="Games\Snake\Images\SnakeBody\Turn\upRight.png" />
+    <Resource Include="Games\Snake\Images\Floor\dirt.png" />
+    <Resource Include="Games\Snake\Images\Floor\oakPlanks.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

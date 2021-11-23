@@ -9,20 +9,13 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
 {
     public abstract class SnakeLevel : ICloneable
     {
-        private string _bgImgSource;
         private int _widthField = 0;
         private int _heigthField = 0;
+        protected List<Floor> _floor = new List<Floor>();
         protected List<Barrier> _barriers = new List<Barrier>();
         protected SnakePlayer _snake;
         private int _maxScore = 0;
 
-        public string bgImgSource
-        {
-            get
-            {
-                return _bgImgSource;
-            }
-        }
         public int widthField
         {
             get
@@ -35,6 +28,13 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
             get
             {
                 return _heigthField;
+            }
+        }
+        public List<Floor> floor
+        {
+            get
+            {
+                return _floor;
             }
         }
         public List<Barrier> barriers
@@ -61,12 +61,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
 
         protected BarriersStructures barStruct = new BarriersStructures();
 
-        protected void SetBgImgSource(string imgName)
-        {
-            _bgImgSource = "/Games/Snake/Images/Backgrounds/" + imgName;
-        }
-
-        protected void SetWidthAndHeigth(int widthField, int heigthField)
+        protected void SetSize(int widthField, int heigthField)
         {
             _widthField = widthField;
             _heigthField = heigthField;
@@ -76,6 +71,19 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
         {
             _maxScore = maxScore;
         }
+
+        protected void CreateFloor(string imgName)
+        {
+            for (int i = 0; i < _widthField; i++)
+            {
+                for (int j = 0; j < _heigthField; j++)
+                {
+                    Floor floor = new Floor(i, j, imgName);
+                    _floor.Add(floor);
+                }
+            }
+        }
+
         protected abstract void CreateBarriers();
 
         protected abstract void CreateSnake();

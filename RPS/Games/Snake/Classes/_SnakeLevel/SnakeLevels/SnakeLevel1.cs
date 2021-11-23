@@ -12,8 +12,8 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
     {
         public SnakeLevel1()
         {
-            SetBgImgSource("wood.png");
-            SetWidthAndHeigth(15, 15);
+            SetSize(15, 15);
+            CreateFloor("oakPlanks.png");
             CreateBarriers();
             CreateSnake();
             SetMaxScore(400);

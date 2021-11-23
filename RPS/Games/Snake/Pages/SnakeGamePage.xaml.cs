@@ -1,6 +1,7 @@
 ﻿using MINIGAMES.Classes;
 using MINIGAMES.Games.Snake.Classes;
 using MINIGAMES.Games.Snake.Classes._ObjectOnField;
+using MINIGAMES.Games.Snake.Classes._ObjectOnField._SnakeStructure;
 using MINIGAMES.Games.Snake.Classes._SnakeLevel;
 using MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels;
 using MINIGAMES.Pages;
@@ -55,6 +56,7 @@ namespace MINIGAMES.Games.Snake.Pages
 
             gridGameOver.Visibility = Visibility.Hidden;
             CreateGameField();
+            CreateFloor();
             CreateBarriers();
             CreateSnake();
             CreateFood();
@@ -115,11 +117,17 @@ namespace MINIGAMES.Games.Snake.Pages
             {
                 gridGameField.RowDefinitions.Add(new RowDefinition());
             }
+        }
 
-            ImageBrush imageBrush = new ImageBrush(); 
-            imageBrush.ImageSource =
-                new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), currentSnakeLevel.bgImgSource));
-            gridGameField.Background = imageBrush;
+        /// <summary>
+        /// Создаёт пол на игровом поле
+        /// </summary>
+        private void CreateFloor()
+        {
+            foreach (var floor in currentSnakeLevel.floor)
+            {
+                gridGameField.Children.Add(floor.image);
+            }
         }
 
         /// <summary>
@@ -151,36 +159,32 @@ namespace MINIGAMES.Games.Snake.Pages
                 }
             }
 
-            List<Food> allFood = new List<Food>();
-            for (int i = 0; i < currentSnakeLevel.widthField; i++)
-            {
-                for (int j = 0; j < currentSnakeLevel.heigthField; j++)
-                {
-                    Food food = new Food(i, j, null);
-                    allFood.Add(food);
-                }
-            }
-
             List<ObjectOnField> objectsOnField = new List<ObjectOnField>();
             objectsOnField.AddRange(currentSnakeLevel.barriers);
             objectsOnField.AddRange(currentSnakeLevel.snake.bodies);
-            foreach (var objectOnField in objectsOnField)
+            objectsOnField.Add(currentSnakeLevel.snake.head);
+            objectsOnField.Add(currentSnakeLevel.snake.tail);
+
+            List<Food> possibleFood = new List<Food>();
+
+            foreach (var floor in currentSnakeLevel.floor)
             {
-                foreach (var food in allFood)
+                bool possible = true;
+
+                foreach (var objectOnField in objectsOnField)
                 {
-                    if (food.x == objectOnField.x && food.y == objectOnField.y)
+                    if (objectOnField.x == floor.x && objectOnField.y == floor.y)
                     {
-                        allFood.Remove(food);
+                        possible = false;
                         break;
                     }
                 }
-            }
 
-            List<Food> possibleFood = new List<Food>();
-            foreach(var food in allFood)
-            {
-                if (food == null) continue;
-                possibleFood.Add(food);
+                if (possible)
+                {
+                    Food food = new Food(floor.x, floor.y, null);
+                    possibleFood.Add(food);
+                }
             }
 
             Random random = new Random();
@@ -200,7 +204,23 @@ namespace MINIGAMES.Games.Snake.Pages
         private void CreateSnake()
         {
             SnakePlayer snake = currentSnakeLevel.snake;
+
+            gridGameField.Children.Add(snake.head.image);
             foreach (var body in snake.bodies)
+            {
+                gridGameField.Children.Add(body.image);
+            }
+            gridGameField.Children.Add(snake.tail.image);
+        }
+
+        /// <summary>
+        /// Добавляет на игровое поле последнее тело змейки
+        /// </summary>
+        private void AddLastBody()
+        {
+            SnakePlayer snake = currentSnakeLevel.snake;
+            SnakeBody body = snake.bodies[snake.bodies.Count - 1];
+            if (body.image.Parent == null)
             {
                 gridGameField.Children.Add(body.image);
             }
@@ -212,10 +232,10 @@ namespace MINIGAMES.Games.Snake.Pages
         /// <returns></returns>
         private bool CheckSnakeHead()
         {
-            SnakeBody snakeHead = currentSnakeLevel.snake.bodies[0];
-            int futureX = snakeHead.x;
-            int futureY = snakeHead.y;
-            Way headWay = snakeHead.way;
+            SnakeHead head = currentSnakeLevel.snake.head;
+            int futureX = head.x;
+            int futureY = head.y;
+            Way headWay = head.way;
 
             switch (headWay)
             {
@@ -238,6 +258,8 @@ namespace MINIGAMES.Games.Snake.Pages
                 }
             }
 
+            AddLastBody();
+
             return true;
         }
 
@@ -246,13 +268,17 @@ namespace MINIGAMES.Games.Snake.Pages
         /// </summary>
         private void TryEatFood()
         {
-            SnakeBody snakeHead = currentSnakeLevel.snake.bodies[0];
-            if (snakeHead.x == food.x && snakeHead.y == food.y)
+            SnakePlayer snake = currentSnakeLevel.snake;
+
+            if (snake.bodies[snake.bodies.Count - 1].image.Parent == null)
+            {
+                gridGameField.Children.Add(snake.bodies[snake.bodies.Count - 1].image);
+            }
+
+            if (snake.head.x == food.x && snake.head.y == food.y)
             {
                 score += 10;
-                currentSnakeLevel.snake.Growth();
-                gridGameField.Children.Add
-                    (currentSnakeLevel.snake.bodies[currentSnakeLevel.snake.bodies.Count - 1].image);
+                snake.Growth();
                 CreateFood();
                 ShowScore();
             }
@@ -384,7 +410,7 @@ namespace MINIGAMES.Games.Snake.Pages
         {
             if (!currentSnakeLevel.snake.turn)
             {
-                Way headWay = currentSnakeLevel.snake.bodies[0].way;
+                Way headWay = currentSnakeLevel.snake.head.way;
 
                 switch (e.Key)
                 {
@@ -406,9 +432,9 @@ namespace MINIGAMES.Games.Snake.Pages
                         break;
                 }
 
-                if (headWay != currentSnakeLevel.snake.bodies[0].way)
+                if (headWay != currentSnakeLevel.snake.head.way)
                 {
-                    currentSnakeLevel.snake.bodies[0].way = headWay;
+                    currentSnakeLevel.snake.head.way = headWay;
                     currentSnakeLevel.snake.turn = true;
                 }
             }
@@ -418,11 +444,13 @@ namespace MINIGAMES.Games.Snake.Pages
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            FrameMain.ClearHistory();
             NavigationService.Navigate(new MainMenuPage());
         }
 
         private void btnRestart_Click(object sender, RoutedEventArgs e)
         {
+            FrameMain.ClearHistory();
             NavigationService.Navigate(new SnakeGamePage(levelNumber, infinityGame));
         }
 
