@@ -1,0 +1,207 @@
+﻿<Page x:Class="MINIGAMES.Games.RPS.Pages.RPSGamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MINIGAMES.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GamePage">
+
+    <Page.Resources>
+        <Style x:Key="gridPlayer" TargetType="Grid">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
+        <Style x:Key="gridEnemy" TargetType="Grid">
+            <Setter Property="Background" Value="IndianRed"/>
+        </Style>
+
+        <Style x:Key="gridVersus" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="1,0.5" EndPoint="0,0.5">
+                        <GradientStop Color="LightBlue" Offset="1"/>
+                        <GradientStop Color="IndianRed" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="imgOpponent" TargetType="Image">
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+
+        <Style x:Key="btnItem" TargetType="Button">
+            <Setter Property="Margin" Value="0, 5, 0, 5"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Style="{StaticResource gridPlayer}"
+              Name="gridPlayer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition/>
+                <RowDefinition Height="180"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding name}"/>
+
+            <Rectangle Grid.Row="1" Fill="Black"/>
+
+            <Image Grid.Row="2" Source="{Binding imgSource}"
+                   Style="{StaticResource imgOpponent}"/>
+
+            <StackPanel Grid.Row="3" Orientation="Vertical"
+                        Width="250">
+                <TextBlock Text="Выберите предмет" FontSize="20"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Button Style="{StaticResource btnItem}" Name="btnRock"
+                            Click="btnRock_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/rock.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Камень"
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource btnItem}" Name="btnScissors"
+                            Click="btnScissors_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/scissors.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Ножницы"
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource btnItem}" Name="btnPaper"
+                            Click="btnPaper_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/paper.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Бумага" 
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            
+        </Grid>
+
+        <Rectangle Grid.Column="1" Fill="Black"/>
+
+        <Grid Grid.Column="2" Style="{StaticResource gridVersus}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition/>
+                <RowDefinition Height="2"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical"
+                        VerticalAlignment="Center">
+                <TextBlock Text="0:0" FontSize="35" Name="tblScore"/>
+
+                <TextBlock Text="(до N побед)" FontSize="20"
+                           Name="tblMaxRounds"/>
+            </StackPanel>
+
+            <Rectangle Grid.Row="1" Fill="Black"/>
+
+            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden"
+                          Name="svRoundResults">
+                <StackPanel Orientation="Vertical" Name="spRoundResults"/>
+            </ScrollViewer>
+
+            <Rectangle Grid.Row="3" Fill="Black"/>
+
+            <TextBlock Grid.Row="4" FontSize="25" Text="Раунд №n"
+                       Name="tblRoundNumber"/>
+
+            <Button Grid.Row="5" Name="btnSurrender"
+                    Click="btnSurrender_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/Buttons/surrender.png"
+                           Style="{StaticResource imgInBtn}"/>
+                    <TextBlock Text="Сдаться"
+                               Style="{StaticResource tblInBtn}"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Rectangle Grid.Column="3" Fill="Black"/>
+
+        <Grid Grid.Column="4" Style="{StaticResource gridEnemy}"
+              Name="gridEnemy">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="2"/>
+                <RowDefinition/>
+                <RowDefinition Height="180"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding name}"/>
+
+            <Rectangle Grid.Row="1" Fill="Black"/>
+
+            <Image Grid.Row="2" Source="{Binding imgSource}"
+                   Style="{StaticResource imgOpponent}"/>
+
+            <StackPanel Grid.Row="3" Orientation="Vertical"
+                        Width="250">
+                <TextBlock Text="Выберите предмет" FontSize="20"/>
+
+                <StackPanel Orientation="Vertical">
+                    <Button Style="{StaticResource btnItem}" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/rock.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Камень"
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource btnItem}" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/scissors.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Ножницы"
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Style="{StaticResource btnItem}" IsEnabled="False">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/Items/paper.png"
+                               Style="{StaticResource imgInBtn}"/>
+                            <TextBlock Text="Бумага" 
+                                       Style="{StaticResource tblInBtn}"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

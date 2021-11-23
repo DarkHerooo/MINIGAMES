@@ -1,0 +1,86 @@
+﻿<Page x:Class="MINIGAMES.Games.Snake.Pages.SnakeGamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MINIGAMES.Games.Snake.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SnakeGamePage">
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5, 0, 5, 5"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Name="gridMain" Background="LightGreen">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Name="gridGameField"
+              PreviewKeyDown="gridGameField_PreviewKeyDown"
+              Focusable="True">
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal"
+                        HorizontalAlignment="Center" Margin="10"
+                        Name="spUserInfo">
+                <Image Source="{Binding imgSource}"/>
+                <TextBlock Text="{Binding name}" FontSize="30" FontWeight="Bold"
+                           Margin="10, 0, 0, 0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical"
+                        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Очков" FontSize="20" HorizontalAlignment="Center"
+                           Margin="0, 0, 0, 10"/>
+                <TextBlock Text="0" FontSize="50" HorizontalAlignment="Center"
+                           Margin="0, 0, 0, 20" FontWeight="Bold"
+                           Name="tblScore"/>
+            </StackPanel>
+
+            <Grid Grid.Row="2" Name="gridGameOver">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Игра окончена!" FontSize="25"
+                           FontWeight="Bold" HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Name="tblGameMessage"/>
+
+                <Button Grid.Row="1" Name="btnPlay">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/Buttons/play.png"
+                           Style="{StaticResource imgInBtn}"/>
+                        <TextBlock Text="Ещё раз!" 
+                                   Style="{StaticResource tblInBtn}"
+                                   Name="tblBtnRestart"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Row="2" Name="btnBack" Click="btnBack_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/Buttons/menu.png"
+                           Style="{StaticResource imgInBtn}"/>
+                        <TextBlock Text="Вернуться в меню" 
+                                   Style="{StaticResource tblInBtn}"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>

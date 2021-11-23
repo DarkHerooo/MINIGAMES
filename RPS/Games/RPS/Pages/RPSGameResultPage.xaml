@@ -1,0 +1,92 @@
+﻿<Page x:Class="MINIGAMES.Games.RPS.Pages.RPSGameResultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MINIGAMES.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GameResultPage">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Name="gridMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Победа/Поражение" Name="tblResult"
+                   FontSize="50"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Margin="20"
+                  Name="gridPlayer">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="{Binding imgSource}"/>
+
+                <TextBlock Grid.Row="1" Text="{Binding name}"/>
+            </Grid>
+
+            <TextBlock Grid.Column="1" Text="0:0"
+                       Name="tblScore" FontSize="60"/>
+
+            <Grid Grid.Column="2" Margin="20"
+                  Name="gridEnemy">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="{Binding imgSource}"/>
+
+                <TextBlock Grid.Row="1" Text="{Binding name}"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Margin="5"
+                    Name="btnGoMenu" Click="btnGoMenu_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource imgInBtn}"
+                           Source="/Images/Buttons/menu.png"/>
+                    <TextBlock Style="{StaticResource tblInBtn}"
+                               Text="Вернуться в меню"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="1" Margin="5"
+                    Name="btnRevenge" Click="btnRevenge_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource imgInBtn}"
+                           Source="/Images/Buttons/revenge.png"/>
+                    <TextBlock Style="{StaticResource tblInBtn}"
+                               Text="Реванш!"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
