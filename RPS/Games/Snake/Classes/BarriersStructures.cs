@@ -39,36 +39,13 @@ namespace MINIGAMES.Games.Snake.Classes
         }
 
         /// <summary>
-        /// Создаёт дерево-препятствие на локации
+        /// Создаёт горизонтальную линию из препятствий
         /// </summary>
-        /// <param name="senterX"></param>
-        /// <param name="senterY"></param>
-        /// <param name="logImgName"></param>
-        /// <param name="leafImgName"></param>
+        /// <param name="startX"></param>
+        /// <param name="y"></param>
+        /// <param name="length"></param>
+        /// <param name="imgName"></param>
         /// <returns></returns>
-        public List<Barrier> CreateTreeBarrier(int senterX, int senterY, string logImgName,
-            string leafImgName)
-        {
-            List<Barrier> barriers = new List<Barrier>();
-
-            Barrier log = new Barrier(senterX, senterY, logImgName);
-            barriers.Add(log);
-
-            Barrier leaf1 = new Barrier(senterX - 1, senterY, leafImgName);
-            barriers.Add(leaf1);
-
-            Barrier leaf2 = new Barrier(senterX + 1, senterY, leafImgName);
-            barriers.Add(leaf2);
-
-            Barrier leaf3 = new Barrier(senterX, senterY - 1, leafImgName);
-            barriers.Add(leaf3);
-
-            Barrier leaf4 = new Barrier(senterX, senterY + 1, leafImgName);
-            barriers.Add(leaf4);
-
-            return barriers;
-        }
-
         public List<Barrier> CreateHorisontalBarrier(int startX, int y, int length,
             string imgName)
         {
@@ -83,7 +60,15 @@ namespace MINIGAMES.Games.Snake.Classes
             return barriers;
         }
 
-        public List<Barrier> CreateVerticalBarrier(int startY, int x, int length,
+        /// <summary>
+        /// Создаёт вертикальную линию из препятствий
+        /// </summary>
+        /// <param name="startY"></param>
+        /// <param name="x"></param>
+        /// <param name="length"></param>
+        /// <param name="imgName"></param>
+        /// <returns></returns>
+        public List<Barrier> CreateVerticalBarrier(int x, int startY, int length,
             string imgName)
         {
             List<Barrier> barriers = new List<Barrier>();

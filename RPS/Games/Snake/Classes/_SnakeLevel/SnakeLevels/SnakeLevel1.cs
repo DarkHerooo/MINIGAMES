@@ -13,7 +13,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
         public SnakeLevel1()
         {
             SetSize(15, 15);
-            CreateFloor("oakPlanks.png");
+            CreateFloor("oak_planks.png");
             CreateBarriers();
             CreateSnake();
             SetMaxScore(400);
@@ -21,7 +21,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
 
         protected override void CreateBarriers()
         {
-            _barriers.AddRange(barStruct.CreateFenceBarriers(widthField, heigthField, "wood.png"));
+            _barriers.AddRange(barStruct.CreateFenceBarriers(widthField, heigthField, "oak_wood.png"));
         }
 
         protected override void CreateSnake()

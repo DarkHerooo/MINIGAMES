@@ -45,7 +45,7 @@ namespace MINIGAMES.Games.Snake.Pages
 
         private void btnThirdLevel_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new SnakeGamePage(2, true));
         }
     }
 }

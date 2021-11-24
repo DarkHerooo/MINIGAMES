@@ -95,6 +95,7 @@
     <Compile Include="Games\Snake\Classes\_ObjectOnField\ObjectOnField.cs" />
     <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevels\SnakeLevel1.cs" />
     <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevels\SnakeLevel2.cs" />
+    <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevels\SnakeLevel3.cs" />
     <Compile Include="Games\Snake\Pages\SnakeGamePage.xaml.cs">
       <DependentUpon>SnakeGamePage.xaml</DependentUpon>
     </Compile>
@@ -240,9 +241,6 @@
     <Resource Include="Games\RPS\Images\LogoAndIcon\rps.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\Barrier\wood.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Games\Snake\Images\Food\apple.png" />
   </ItemGroup>
   <ItemGroup>
@@ -278,9 +276,6 @@
     <Resource Include="Games\Snake\Images\Achievements\game.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\Barrier\leaves.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Games\Snake\Images\SnakeStructure\Body\horizontal.png" />
     <Resource Include="Games\Snake\Images\SnakeStructure\Body\vertical.png" />
     <Resource Include="Games\Snake\Images\SnakeStructure\Head\Dead\down.png" />
@@ -302,7 +297,51 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Games\Snake\Images\Floor\dirt.png" />
-    <Resource Include="Games\Snake\Images\Floor\oakPlanks.png" />
+    <Resource Include="Games\Snake\Images\Floor\oak_planks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Floor\snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\ice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\oak_leaves.png" />
+    <Resource Include="Games\Snake\Images\Barrier\spruce_leaves.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\spruce_wood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\glowstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\blue_wool.png" />
+    <Resource Include="Games\Snake\Images\Barrier\green_wool.png" />
+    <Resource Include="Games\Snake\Images\Barrier\pink_wool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\red_wool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\gray_wool.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\Snowman\head.png" />
+    <Resource Include="Games\Snake\Images\Barrier\Snowman\legs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\Snowman\body.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\Gift\pink_gift.png" />
+    <Resource Include="Games\Snake\Images\Barrier\Gift\yellow_gift.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Barrier\oak_wood.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Floor\grass.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

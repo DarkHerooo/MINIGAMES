@@ -37,7 +37,7 @@ namespace MINIGAMES.Games.Snake.Pages
         private SnakeLevel currentSnakeLevel;
         private SnakeLevel[] levels =
         {
-            new SnakeLevel1(), new SnakeLevel2()
+            new SnakeLevel1(), new SnakeLevel2(), new SnakeLevel3()
         };
         private int levelNumber;
         private bool infinityGame;

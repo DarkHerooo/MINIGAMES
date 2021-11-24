@@ -1,4 +1,5 @@
 ﻿using MINIGAMES.Classes;
+using MINIGAMES.Games.Snake.Classes._ObjectOnField;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
         public SnakeLevel2()
         {
             SetSize(15, 15);
-            CreateFloor("dirt.png");
+            CreateFloor("grass.png");
             CreateBarriers();
             CreateSnake();
             SetMaxScore(200);
@@ -20,11 +21,19 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
 
         protected override void CreateBarriers()
         {
-            _barriers.AddRange(barStruct.CreateFenceBarriers(widthField, heigthField, "leaves.png"));
-            _barriers.AddRange(barStruct.CreateTreeBarrier(4, 4, "wood.png", "leaves.png"));
-            _barriers.AddRange(barStruct.CreateTreeBarrier(10, 4, "wood.png", "leaves.png"));
-            _barriers.AddRange(barStruct.CreateTreeBarrier(4, 10, "wood.png", "leaves.png"));
-            _barriers.AddRange(barStruct.CreateTreeBarrier(10, 10, "wood.png", "leaves.png"));
+            _barriers.AddRange(barStruct.CreateFenceBarriers(widthField, heigthField, "oak_leaves.png"));
+            CreateTree(4, 5);
+            CreateTree(10, 5);
+            CreateTree(4, 12);
+            CreateTree(10, 12);
+        }
+
+        public void CreateTree(int bottomX, int bottomY)
+        {
+            _barriers.Add(new Barrier(bottomX, bottomY, "oak_wood.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 1, 3, "oak_leaves.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 2, 3, "oak_leaves.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 3, 3, "oak_leaves.png"));
         }
 
         protected override void CreateSnake()
