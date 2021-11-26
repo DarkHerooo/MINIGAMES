@@ -1,4 +1,4 @@
-﻿using MINIGAMES.Games.Snake.Classes._SnakeLevel;
+﻿using MINIGAMES.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,28 +17,18 @@ using System.Windows.Shapes;
 namespace MINIGAMES.Games.Snake.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SnakeSelectModePage.xaml
+    /// Логика взаимодействия для SnakeWinPage.xaml
     /// </summary>
-    public partial class SnakeSelectModePage : Page
+    public partial class SnakeWinPage : Page
     {
-        public SnakeSelectModePage()
+        public SnakeWinPage()
         {
             InitializeComponent();
         }
 
-        private void btnCampaign_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new SnakeGamePage(SnakeLevelNum.First, false));
-        }
-
-        private void btnInfinityGame_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new SnakeSelectLevelPage());
-        }
-
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new MainMenuPage());
         }
     }
 }

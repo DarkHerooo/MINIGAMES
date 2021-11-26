@@ -1,5 +1,6 @@
 ﻿using MINIGAMES.Games.Snake.Classes;
 using MINIGAMES.Games.Snake.Classes._ObjectOnField;
+using MINIGAMES.Games.Snake.Classes._SnakeLevel;
 using MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels;
 using System;
 using System.Collections.Generic;
@@ -35,17 +36,17 @@ namespace MINIGAMES.Games.Snake.Pages
 
         private void btnFirstLevel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SnakeGamePage(0, true));
+            NavigationService.Navigate(new SnakeGamePage(SnakeLevelNum.First, true));
         }
 
         private void btnSecondLevel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SnakeGamePage(1, true));
+            NavigationService.Navigate(new SnakeGamePage(SnakeLevelNum.Second, true));
         }
 
         private void btnThirdLevel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SnakeGamePage(2, true));
+            NavigationService.Navigate(new SnakeGamePage(SnakeLevelNum.Third, true));
         }
     }
 }

@@ -49,7 +49,8 @@
                            Name="tblScore"/>
             </StackPanel>
 
-            <Grid Grid.Row="2" Name="gridGameOver">
+            <Grid Grid.Row="2" Name="gridGameOver" Focusable="True"
+                  FocusVisualStyle="{x:Null}" PreviewKeyDown="gridGameOver_PreviewKeyDown">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -61,22 +62,29 @@
                            VerticalAlignment="Center"
                            Name="tblGameMessage"/>
 
-                <Button Grid.Row="1" Name="btnPlay">
+                <Button Grid.Row="1" Name="btnPlay" FocusVisualStyle="{x:Null}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/Buttons/play.png"
                            Style="{StaticResource imgInBtn}"/>
-                        <TextBlock Text="Ещё раз!" 
+                        <TextBlock Text="Играть" 
                                    Style="{StaticResource tblInBtn}"
-                                   Name="tblBtnRestart"/>
+                                   Name="tblBtnPlay"/>
+                        <TextBlock Text="(Enter)" 
+                                   Style="{StaticResource tblInBtn}"
+                                   Margin="0"/>
                     </StackPanel>
                 </Button>
 
-                <Button Grid.Row="2" Name="btnBack" Click="btnBack_Click">
+                <Button Grid.Row="2" Name="btnBack" Click="btnBack_Click"
+                        FocusVisualStyle="{x:Null}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/Buttons/menu.png"
                            Style="{StaticResource imgInBtn}"/>
                         <TextBlock Text="Вернуться в меню" 
                                    Style="{StaticResource tblInBtn}"/>
+                        <TextBlock Text="(Esc)" 
+                                   Style="{StaticResource tblInBtn}"
+                                   Margin="0"/>
                     </StackPanel>
                 </Button>
             </Grid>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
 {
-    public abstract class SnakeLevel : ICloneable
+    public abstract class SnakeLevel
     {
         private int _widthField = 0;
         private int _heigthField = 0;
@@ -89,14 +89,5 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
         protected abstract void CreateSnake();
 
         public abstract void SaveScore(int score);
-
-        public object Clone()
-        {
-            SnakeLevel snakeLevel = (SnakeLevel)MemberwiseClone();
-            snakeLevel._barriers.Clear();
-            snakeLevel.CreateBarriers();
-            snakeLevel.CreateSnake();
-            return snakeLevel;
-        }
     }
 }

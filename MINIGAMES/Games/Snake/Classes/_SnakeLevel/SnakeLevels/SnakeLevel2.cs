@@ -16,7 +16,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             CreateFloor("grass.png");
             CreateBarriers();
             CreateSnake();
-            SetMaxScore(200);
+            SetMaxScore(250);
         }
 
         protected override void CreateBarriers()

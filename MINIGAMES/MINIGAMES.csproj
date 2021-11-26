@@ -86,6 +86,7 @@
     <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeHead.cs" />
     <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeStructure.cs" />
     <Compile Include="Games\Snake\Classes\_ObjectOnField\_SnakeStructure\SnakeTail.cs" />
+    <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevelNum.cs" />
     <Compile Include="Games\Snake\Classes\_SnakeLevel\SnakeLevel.cs" />
     <Compile Include="Games\Snake\Classes\SnakePlayer.cs" />
     <Compile Include="Games\Snake\Classes\SnakeData.cs" />
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="Games\Snake\Pages\SnakeSelectModePage.xaml.cs">
       <DependentUpon>SnakeSelectModePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Snake\Pages\SnakeWinPage.xaml.cs">
+      <DependentUpon>SnakeWinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Main\FrameMain.cs" />
     <Compile Include="Pages\MinigamesPage.xaml.cs">
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Games\Snake\Pages\SnakeSelectModePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Games\Snake\Pages\SnakeWinPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
