@@ -9,11 +9,26 @@
       Title="SnakeWinPage">
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock Text="ПОБЕДА!" FontSize="70" FontWeight="Bold"/>
-            <Button Content="Вернуться в меню" Height="50" Margin="0, 20, 0, 0"
-                    Name="btnBack" Click="btnBack_Click"/>
-        </StackPanel>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Games/Snake/Images/Floor/Snow.png"/>
+        </Grid.Background>
+        <Grid x:Name="gridBackground"/>
+
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                Background="White" BorderBrush="Black" BorderThickness="2"
+                Padding="10">
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="ПОБЕДА!" FontSize="70" FontWeight="Bold"/>
+                <Button Height="50" Margin="0, 20, 0, 0" Name="btnBack"
+                    Click="btnBack_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Style="{StaticResource imgInBtn}"
+                           Source="/Images/Buttons/menu.png"/>
+                        <TextBlock Text="Вернуться в меню"
+                               Style="{StaticResource tblInBtn}"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>

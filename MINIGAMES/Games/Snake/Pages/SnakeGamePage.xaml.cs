@@ -52,10 +52,6 @@ namespace MINIGAMES.Games.Snake.Pages
 
             SetSnakeLevel();
             CreateGameField();
-            CreateFloor();
-            CreateBarriers();
-            CreateSnake();
-            CreateFood();
             ShowScore();
             PrepareGame();
         }
@@ -126,6 +122,11 @@ namespace MINIGAMES.Games.Snake.Pages
             {
                 gridGameField.RowDefinitions.Add(new RowDefinition());
             }
+
+            CreateFloor();
+            CreateBarriers();
+            CreateSnake();
+            CreateFood();
         }
 
         /// <summary>
@@ -513,6 +514,7 @@ namespace MINIGAMES.Games.Snake.Pages
             }
             else
             {
+                User.userPlayers.snake.WinCampage();
                 NavigationService.Navigate(new SnakeWinPage());
             }
         }

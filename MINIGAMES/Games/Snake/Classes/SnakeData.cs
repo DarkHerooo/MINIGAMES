@@ -10,6 +10,7 @@ namespace MINIGAMES.Pages.Snake.Classes
     public class SnakeData
     {
         public int countGames { get; set; }
+        public int countCampageWins { get; set; }
         public int levelScore1 { get; set; }
         public int levelScore2 { get; set; }
         public int levelScore3 { get; set; }
@@ -17,6 +18,11 @@ namespace MINIGAMES.Pages.Snake.Classes
         public void GameOver()
         {
             countGames++;
+        }
+
+        public void WinCampage()
+        {
+            countCampageWins++;
         }
     }
 }

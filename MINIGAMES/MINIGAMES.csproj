@@ -278,9 +278,6 @@
     <Resource Include="Games\RPS\Images\Achievements\game.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Games\Snake\Images\Achievements\trophy.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Games\Snake\Images\Achievements\game.png" />
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +359,14 @@
   <ItemGroup>
     <Resource Include="Games\Snake\Images\Food\chocolate_milk.png" />
     <Resource Include="Games\Snake\Images\Food\common_milk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Achievements\box.png" />
+    <Resource Include="Games\Snake\Images\Achievements\christmas.png" />
+    <Resource Include="Games\Snake\Images\Achievements\forest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Achievements\campage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

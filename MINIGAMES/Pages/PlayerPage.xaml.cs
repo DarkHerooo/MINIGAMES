@@ -90,8 +90,14 @@ namespace MINIGAMES.Pages
 
             Achievement[] achievements =
             {
-                new Achievement("Рекорд", url + "trophy.png",
+                new Achievement("Рекорд уровня ''Коробка''", url + "box.png",
                 User.userPlayers.snake.levelScore1),
+                new Achievement("Рекорд уровня ''Лес''", url + "forest.png",
+                User.userPlayers.snake.levelScore2),
+                new Achievement("Рекорд уровня ''Рождество''", url + "christmas.png",
+                User.userPlayers.snake.levelScore3),
+                new Achievement("Пройдено кампаний", url + "campage.png",
+                User.userPlayers.snake.countCampageWins),
                 new Achievement("Количество игр", url + "game.png",
                 User.userPlayers.snake.countGames),
             };
