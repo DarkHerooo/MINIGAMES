@@ -16,6 +16,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             CreateFloor("oak_planks.png");
             CreateBarriers();
             CreateSnake();
+            SetPossibleFoodStr();
             SetMaxScore(300);
         }
 
@@ -33,6 +34,12 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             Way[] ways = { Way.Down, Way.Left, Way.Right, Way.Up };
             Way randWay = ways[random.Next(ways.Length)];
             _snake = new SnakePlayer(randX, randY, startLength, randWay);
+        }
+
+        protected override void SetPossibleFoodStr()
+        {
+            _possibleFoodStr = new string[] { "cheese.png", "meat.png", "pizza.png",
+                "common_milk.png" };
         }
 
         public override void SaveScore(int score)

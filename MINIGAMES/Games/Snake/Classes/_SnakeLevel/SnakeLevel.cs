@@ -14,6 +14,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
         protected List<Floor> _floor = new List<Floor>();
         protected List<Barrier> _barriers = new List<Barrier>();
         protected SnakePlayer _snake;
+        protected string[] _possibleFoodStr;
         private int _maxScore = 0;
 
         public int widthField
@@ -49,6 +50,13 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
             get
             {
                 return _snake;
+            }
+        }
+        public string[] possibleFoodStr
+        {
+            get
+            {
+                return _possibleFoodStr;
             }
         }
         public int maxScore
@@ -87,6 +95,8 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel
         protected abstract void CreateBarriers();
 
         protected abstract void CreateSnake();
+
+        protected abstract void SetPossibleFoodStr();
 
         public abstract void SaveScore(int score);
     }

@@ -351,5 +351,17 @@
   <ItemGroup>
     <Resource Include="Games\Snake\Images\Floor\grass.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Food\cheese.png" />
+    <Resource Include="Games\Snake\Images\Food\chocolate.png" />
+    <Resource Include="Games\Snake\Images\Food\cookie.png" />
+    <Resource Include="Games\Snake\Images\Food\meat.png" />
+    <Resource Include="Games\Snake\Images\Food\pear.png" />
+    <Resource Include="Games\Snake\Images\Food\pizza.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Games\Snake\Images\Food\chocolate_milk.png" />
+    <Resource Include="Games\Snake\Images\Food\common_milk.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

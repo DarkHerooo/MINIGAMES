@@ -16,7 +16,16 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             CreateFloor("grass.png");
             CreateBarriers();
             CreateSnake();
+            SetPossibleFoodStr();
             SetMaxScore(250);
+        }
+
+        public void CreateTree(int bottomX, int bottomY)
+        {
+            _barriers.Add(new Barrier(bottomX, bottomY, "oak_wood.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 1, 3, "oak_leaves.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 2, 3, "oak_leaves.png"));
+            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 3, 3, "oak_leaves.png"));
         }
 
         protected override void CreateBarriers()
@@ -28,17 +37,14 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             CreateTree(10, 12);
         }
 
-        public void CreateTree(int bottomX, int bottomY)
-        {
-            _barriers.Add(new Barrier(bottomX, bottomY, "oak_wood.png"));
-            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 1, 3, "oak_leaves.png"));
-            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 2, 3, "oak_leaves.png"));
-            _barriers.AddRange(barStruct.CreateHorisontalBarrier(bottomX - 1, bottomY - 3, 3, "oak_leaves.png"));
-        }
-
         protected override void CreateSnake()
         {
             _snake = new SnakePlayer(4, 7, 3, Way.Right);
+        }
+
+        protected override void SetPossibleFoodStr()
+        {
+            _possibleFoodStr = new string[] { "apple.png", "grape.png", "pear.png" };
         }
 
         public override void SaveScore(int score)

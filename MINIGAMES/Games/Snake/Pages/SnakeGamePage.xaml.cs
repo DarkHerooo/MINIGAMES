@@ -200,9 +200,8 @@ namespace MINIGAMES.Games.Snake.Pages
             int randNum = random.Next(possibleFood.Count);
             food = possibleFood[randNum];
 
-            string[] foodImages = { "apple.png", "grape.png", "orange.png" };
-            randNum = random.Next(foodImages.Length);
-            food.SetImage(foodImages[randNum]);
+            randNum = random.Next(level.possibleFoodStr.Length);
+            food.SetImage(level.possibleFoodStr[randNum]);
 
             gridGameField.Children.Add(food.image);
         }

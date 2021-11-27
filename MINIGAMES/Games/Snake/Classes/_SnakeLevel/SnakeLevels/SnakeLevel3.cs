@@ -16,6 +16,7 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             CreateFloor("snow.png");
             CreateBarriers();
             CreateSnake();
+            SetPossibleFoodStr();
             SetMaxScore(250);
         }
 
@@ -35,11 +36,6 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
 
             CreateLeftCandy(18, 16);
             CreateSnowman(16, 18);
-        }
-
-        protected override void CreateSnake()
-        {
-            _snake = new SnakePlayer(9, 17, 3, Way.Left);
         }
 
         private void CreateChristmasTree(int bottomX, int bottomY)
@@ -89,6 +85,17 @@ namespace MINIGAMES.Games.Snake.Classes._SnakeLevel.SnakeLevels
             _barriers.Add(new Barrier(bottomX, bottomY, uriString + "legs.png"));
             _barriers.Add(new Barrier(bottomX, bottomY - 1, uriString + "body.png"));
             _barriers.Add(new Barrier(bottomX, bottomY - 2, uriString + "head.png"));
+        }
+
+        protected override void CreateSnake()
+        {
+            _snake = new SnakePlayer(9, 17, 3, Way.Left);
+        }
+
+        protected override void SetPossibleFoodStr()
+        {
+            _possibleFoodStr = new string[] { "chocolate.png", "orange.png", "cookie.png",
+                "chocolate_milk.png"};
         }
 
         public override void SaveScore(int score)
