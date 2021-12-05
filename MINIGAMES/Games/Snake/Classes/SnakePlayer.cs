@@ -231,7 +231,7 @@ namespace MINIGAMES.Games.Snake.Classes
             head.life = false;
             head.way = bodies[0].way;
             head.SetImage();
-            User.userPlayers.snake.GameOver();
+            //User.userPlayers.snake.GameOver();
         }
     }
 }
